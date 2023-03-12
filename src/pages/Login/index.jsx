@@ -27,23 +27,23 @@ function Login() {
 
     useEffect(() => {
         if (authenticated) {
-          // Redireciona para o dashboard após autenticar
-          navigate('/quiz');
+            // Redireciona para o dashboard após autenticar
+            navigate('/home');
         }
-      }, [authenticated, navigate]);
+    }, [authenticated, navigate]);
 
-      const handleSignIn = async (event) => {
+    const handleSignIn = async (event) => {
         event.preventDefault();
         try {
-          await signInWithEmailAndPassword(email, password);
-          
-          setAuthenticated(true);
-          navigate('/quiz');
+            await signInWithEmailAndPassword(email, password);
+
+            setAuthenticated(true);
+            navigate('/home');
         } catch (error) {
-          console.error(error);
-          setSignInError(error.message);
+            console.error(error);
+            setSignInError(error.message);
         }
-      };
+    };
 
 
     if (error) {
@@ -60,12 +60,12 @@ function Login() {
 
     if (user) {
         console.log(user)
-        
+
         return (
             <div>
                 <p>Registered User: {user.user.email}</p>
                 <p>{String(authenticated)}</p>
-                <Link to="/dashboard" />
+                <Link to="/home" />
             </div>
         );
     }
