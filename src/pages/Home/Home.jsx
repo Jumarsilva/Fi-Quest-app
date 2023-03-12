@@ -1,9 +1,9 @@
-import React from 'react'
-import AppFooter from '../../components/AppFooter/AppFooter'
-import AppHeader from '../../components/AppHeader/AppHeader'
-import { PageContent } from '../../components/PageContent/PageContent'
-import SideMenu from '../../components/SideMenu/SideMenu'
-import './Home.css'
+import React from 'react';
+import AppFooter from '../../components/AppFooter/AppFooter';
+import AppHeader from '../../components/AppHeader/AppHeader';
+import { PageContent } from '../../components/PageContent/PageContent';
+import SideMenu from '../../components/SideMenu/SideMenu';
+import './Home.css';
 
 
 export const Home = () => {
@@ -11,10 +11,9 @@ export const Home = () => {
         <div className="AppContent">
             <AppHeader />
             <div className="SideMenuAndPageContent">
-                <SideMenu></SideMenu>
+                <SideMenu />
                 <PageContent></PageContent>
             </div>
             <AppFooter />
         </div>
-    )
-}
+    )};

@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-
 import { AuthContext } from "../../contexts/auth";
-
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../services/firebase";
 import "./css/login.css";
@@ -14,15 +11,14 @@ import logo from './img/logo.png';
 
 function Login() {
     const navigate = useNavigate();
-
-    const { authenticated, setAuthenticated } = useContext(AuthContext);
+    const { authenticated, loading, login } = useContext(AuthContext);
+    const [signInError, setSignInError] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [
         signInWithEmailAndPassword,
         user,
-        loading,
-        error,
+        signInLoading,
     ] = useSignInWithEmailAndPassword(auth);
 
     useEffect(() => {
@@ -35,9 +31,10 @@ function Login() {
     const handleSignIn = async (event) => {
         event.preventDefault();
         try {
-            await signInWithEmailAndPassword(email, password);
-
-            setAuthenticated(true);
+            const userCredential = await signInWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+            
+            login(user.refreshToken);
             navigate('/home');
         } catch (error) {
             console.error(error);
@@ -46,16 +43,21 @@ function Login() {
     };
 
 
-    if (error) {
-        return (
-            <div>
-                <p>Error: {error.message}</p>
-            </div>
-        );
-    }
-
     if (loading) {
         return <p>Loading...</p>;
+    }
+
+
+    if (signInLoading) {
+        return <p>Signing in...</p>;
+    }
+
+    if (signInError) {
+        return (
+            <div>
+                <p>Error: {signInError}</p>
+            </div>
+        );
     }
 
     if (user) {

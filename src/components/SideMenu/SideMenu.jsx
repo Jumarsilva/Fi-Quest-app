@@ -3,19 +3,21 @@ import {
   ShopOutlined, UserOutlined
 } from "@ant-design/icons";
 import { Menu } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function SideMenu() {
   const location = useLocation();
-  const [selectedKeys, setSelectedKeys] = useState("/home");
+  const [selectedKey, setSelectedKey] = useState("/home");
+
 
   useEffect(() => {
     const pathName = location.pathname;
-    setSelectedKeys(pathName);
+    setSelectedKey(pathName);
   }, [location.pathname]);
 
   const navigate = useNavigate();
+
   return (
     <div className="SideMenu">
       <Menu
@@ -25,7 +27,7 @@ function SideMenu() {
           //item.key
           navigate(item.key);
         }}
-        selectedKeys={[selectedKeys]}
+        defaultSelectedKeys={[selectedKey]}
         items={[
           {
             label: "Dashboard",
@@ -43,7 +45,7 @@ function SideMenu() {
             icon: <UserOutlined />,
           },
         ]}
-      ></Menu>
+        ></Menu>
     </div>
   );
 }
