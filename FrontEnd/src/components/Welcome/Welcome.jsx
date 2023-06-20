@@ -1,0 +1,36 @@
+import { useContext } from 'react';
+
+
+import logo from '../../assets/img/logofi.png';
+import { QuizContext } from '../../contexts/Quiz';
+
+import "./Welcome.css";
+
+const Welcome = () => {
+  const [quizState, dispatch] = useContext(QuizContext);
+
+
+  return (
+    <div id='welcome'>
+      
+      <div className="leftSide">
+        <img src={logo} alt="Inicio do quiz" className="title"/>
+      </div>
+
+      <div className="rightSide">
+        <h1>Seja Bem-Vindo</h1>
+        <h2>Regras: </h2>
+        <ul>
+          <li>Serão 05 questões</li>
+          <li>As perguntas serão randômicas</li>
+          <li>O resultado aparecerá na tela</li>
+        </ul>
+         <button onClick={()=> dispatch({type:"CHANGE_STATE"})}>Iniciar</button>
+
+      </div>       
+        
+    </div>
+  )
+}
+
+export default Welcome

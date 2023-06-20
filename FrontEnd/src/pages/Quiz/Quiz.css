@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .container-quiz {
+    min-height: 350px;
+    width: 100%;
+    max-width: 940px;
+    background-color: #fff;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+    padding: 80px 90px;
+    border-radius: 10px;
+  }
+    
