@@ -21,6 +21,7 @@ export default function AppRoutes() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/" element={<Quiz />} />
           <Route path="/colaboradores" element={<Colaboradores />} />
+          <Route path="/quiz" element={<Quiz />} />
         </Routes>
       </AuthProvider>
     </Router>
